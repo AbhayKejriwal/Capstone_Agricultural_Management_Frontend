@@ -11,7 +11,7 @@
 
 <div class="flex">
     <!-- Sidebar -->
-    <nav class="w-1/4 h-screen bg-gray-200 p-4">
+    <nav class="w-1/5 h-screen bg-gray-200 p-4">
         <ul>
             <li *ngFor="let item of menuItems" (click)="onSelectMenu(item.route)" [ngClass]="{
             'bg-blue-500 text-white': selectedMenu === item.route,
@@ -24,7 +24,7 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main class="w-3/4 p-4">
+    <main class="w-4/5 p-4">
         <ng-container [ngSwitch]="selectedMenu">
             <app-farms *ngSwitchCase="'farms'"></app-farms>
             <app-crop-health *ngSwitchCase="'crop-health'"></app-crop-health>
