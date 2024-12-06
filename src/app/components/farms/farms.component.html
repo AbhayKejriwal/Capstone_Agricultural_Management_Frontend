@@ -1,1 +1,48 @@
-<p>farms works!</p>
+<div class="container mx-auto mt-10">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center p-4 bg-blue-50 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-blue-700">Farms</h1>
+        <button mat-raised-button color="accent" routerLink="/farms/add">Add farm</button>
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto mx-auto max-h-full shadow-lg rounded-lg mt-6 bg-white">
+        <table class="table-auto w-full border-collapse">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Location</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Size</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Soil Type</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Crop Details</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Status</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Edit / Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="farms.length === 0 && !error && !loading">
+                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">No farms found</td>
+                </tr>
+                <tr *ngIf="error">
+                    <td class="py-3 px-6 border-t border-gray-200 text-red-500" colspan="6">
+                        {{ error }}
+                    </td>
+                </tr>
+                <tr *ngIf="loading">
+                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">Loading...</td>
+                </tr>                
+
+                <tr *ngFor="let farm of farms" class="border-b hover:bg-gray-100 transition-colors">
+                    <td class="py-3 px-6 border-t border-gray-200">{{ farm.location }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ farm.size }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ farm.soilType }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ farm.cropDetails }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ farm.status }}</td>
+                    <td class="flex gap-4 p-2 border-t border-gray-200">
+                        <button mat-raised-button color="accent" [routerLink]="'/farms/'+farm._id">Edit</button>
+                        <button mat-raised-button color="warn" (click)="deleteFarm(farm._id!)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

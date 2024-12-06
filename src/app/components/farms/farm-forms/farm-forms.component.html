@@ -1,0 +1,41 @@
+<div class="container max-w-lg mt-10 p-6 bg-white shadow-lg rounded-lg">
+
+    <h1 class="text-3xl font-bold mb-6">{{editFarmId?'Update Employee':'Add New Employee'}}</h1>
+
+    <form class="grid gap-4" [formGroup]="farmForm">
+        <mat-form-field class="w-full">
+            <mat-label>Location</mat-label>
+            <input matInput name="location" type="text" formControlName="location" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Size</mat-label>
+            <input matInput name="size" type="number" formControlName="size" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Soil Type</mat-label>
+            <input matInput name="soilType" type="text" formControlName="soilType" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Crop Details</mat-label>
+            <input matInput name="cropDetails" type="text" formControlName="cropDetails" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Status</mat-label>
+            <mat-select name="status" formControlName="status">
+                <mat-option value="Active">Active</mat-option>
+                <mat-option value="Inactive">Inactive</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="flex justify-center gap-4">
+            <button *ngIf="editFarmId" mat-raised-button color="primary" type="button" (click)="updateFarm()">Update</button>
+            <button *ngIf="!editFarmId" mat-raised-button color="primary" type="button" (click)="addFarm()">Add</button>
+
+            <button mat-raised-button color="warn" type="button" routerLink="/dashboard">Cancel</button>
+        </div>
+    </form>
+</div>

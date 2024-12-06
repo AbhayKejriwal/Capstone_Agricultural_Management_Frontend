@@ -23,6 +23,8 @@ import { UnauthorizedComponent } from './components/auth/unauthorized/unauthoriz
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FarmsComponent } from './components/farms/farms.component';
 import { CropHealthComponent } from './components/crop-health/crop-health.component';
+import { FarmFormsComponent } from './components/farms/farm-forms/farm-forms.component';
+import { CropHealthFormsComponent } from './components/crop-health/crop-health-forms/crop-health-forms.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CropHealthComponent } from './components/crop-health/crop-health.compon
     UnauthorizedComponent,
     DashboardComponent,
     FarmsComponent,
-    CropHealthComponent
+    CropHealthComponent,
+    FarmFormsComponent,
+    CropHealthFormsComponent
   ],
   imports: [
     BrowserModule,

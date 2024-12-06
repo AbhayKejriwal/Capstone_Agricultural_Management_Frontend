@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { UnauthorizedComponent } from './components/auth/unauthorized/unauthorized.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
+import { FarmFormsComponent } from './components/farms/farm-forms/farm-forms.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +16,8 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['admin', 'farmer', 'buyer', 'consultant'] },
   },
+  { path: 'farms/add', component: FarmFormsComponent  },
+  { path: 'farms/:id', component: FarmFormsComponent  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
