@@ -19,6 +19,7 @@ export class AuthService {
       },
       (error) => {
         console.log(error);
+        alert('Invalid credentials. Try again.');
       }
     );
   }
