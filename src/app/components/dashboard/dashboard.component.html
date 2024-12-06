@@ -1,0 +1,35 @@
+<header>
+    <mat-toolbar color="primary" class="flex shadow-xl justify-between">
+        <div class="flex items-center">
+            <span class="text-3xl font-bold">Digital Farming and Agricultural Management System</span>
+        </div>
+        <button mat-raised-button (click)="logout()" color="warn">
+            Logout
+        </button>
+    </mat-toolbar>
+</header>
+
+<div class="flex">
+    <!-- Sidebar -->
+    <nav class="w-1/4 h-screen bg-gray-200 p-4">
+        <ul>
+            <li *ngFor="let item of menuItems" (click)="onSelectMenu(item.route)" [ngClass]="{
+            'bg-blue-500 text-white': selectedMenu === item.route,
+            'hover:bg-gray-300': selectedMenu !== item.route,
+            'display-none': !canDisplay(item)
+          }" class="cursor-pointer p-2 rounded mb-2">
+                {{ item.label }}
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="w-3/4 p-4">
+        <ng-container [ngSwitch]="selectedMenu">
+            <app-farms *ngSwitchCase="'farms'"></app-farms>
+            <app-crop-health *ngSwitchCase="'crop-health'"></app-crop-health>
+            <!-- <app-market *ngSwitchCase="'market'"></app-market> -->
+            <!-- <app-notifications *ngSwitchCase="'notifications'"></app-notifications> -->
+        </ng-container>
+    </main>
+</div>

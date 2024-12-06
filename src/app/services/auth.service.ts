@@ -11,8 +11,9 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(credentials: { email: string; password: string }) {
-    return this.http.post(`${this.apiUrl}/login`, credentials).subscribe(
+    return this.http.post(`${this.apiUrl}/login`, credentials, {withCredentials: true}).subscribe(
       (response: any) => {
+        // console.log(response);
         localStorage.setItem('token', response.token);
         this.router.navigate(['/dashboard']); // Redirect to dashboard
       },
