@@ -3,22 +3,32 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = 'http://localhost:5000/api/auth';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(credentials: { email: string; password: string }) {
-    return this.http.post(`${this.apiUrl}/login`, credentials)
-    .subscribe((response: any) => {
-      localStorage.setItem('token', response.token);
-      this.router.navigate(['/dashboard']); // Redirect to dashboard
-    });
+    return this.http.post(`${this.apiUrl}/login`, credentials).subscribe(
+      (response: any) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/dashboard']); // Redirect to dashboard
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
-  register(user: { username: string, email: string; password: string; role: string, phoneNumber: string }) {
+  register(user: {
+    username: string;
+    email: string;
+    password: string;
+    role: string;
+    phoneNumber: string;
+  }) {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
@@ -42,5 +52,4 @@ export class AuthService {
   hasRole(role: string[]): boolean {
     return role.includes(this.getRole());
   }
-  
 }
