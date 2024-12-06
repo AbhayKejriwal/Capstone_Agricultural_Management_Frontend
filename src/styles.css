@@ -3,13 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
-main {
-    margin: 0;
-    width: 100%;
-}
-
+html,
 body {
-    height: 100%;
+  height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
