@@ -1,7 +1,7 @@
 <div class="container mx-auto mt-10">
     <!-- Header Section -->
-    <div class="flex justify-between items-center p-4 bg-blue-50 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold text-blue-700">Farms</h1>
+    <div class="flex justify-between p-4 bg-blue-50 rounded-lg shadow-md">
+        <span class="text-3xl font-bold text-blue-700">Farms</span>
         <button mat-raised-button color="accent" routerLink="/farms/add">Add farm</button>
     </div>
 
@@ -22,13 +22,13 @@
                 <tr *ngIf="farms.length === 0 && !error && !loading">
                     <td class="py-3 px-6 border-t border-gray-200" colspan="6">No farms found</td>
                 </tr>
+                <tr *ngIf="loading">
+                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">Loading...</td>
+                </tr>
                 <tr *ngIf="error">
                     <td class="py-3 px-6 border-t border-gray-200 text-red-500" colspan="6">
                         {{ error }}
                     </td>
-                </tr>
-                <tr *ngIf="loading">
-                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">Loading...</td>
                 </tr>                
 
                 <tr *ngFor="let farm of farms" class="border-b hover:bg-gray-100 transition-colors">

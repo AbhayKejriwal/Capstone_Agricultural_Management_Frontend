@@ -28,7 +28,7 @@ export class FarmsComponent {
 
   deleteFarm(id: string) {
     const ok = confirm('Are you sure you want to delete this farm?');
-    if (!ok) {
+    if (ok) {
       this.farmsService.deleteFarm(id).subscribe(
         () => {
           this.farms = this.farms.filter((farm) => farm._id !== id);

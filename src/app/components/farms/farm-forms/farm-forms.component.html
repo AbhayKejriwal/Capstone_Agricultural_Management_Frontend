@@ -1,6 +1,6 @@
-<div class="container max-w-lg mt-10 p-6 bg-white shadow-lg rounded-lg">
+<div class="container max-w-lg mx-auto mt-36 p-6 bg-white shadow-lg rounded-lg">
 
-    <h1 class="text-3xl font-bold mb-6">{{editFarmId?'Update Employee':'Add New Employee'}}</h1>
+    <h1 class="text-3xl font-bold mb-6">{{editFarmId?'Update Farm':'Add New Farm'}}</h1>
 
     <form class="grid gap-4" [formGroup]="farmForm">
         <mat-form-field class="w-full">
@@ -26,8 +26,8 @@
         <mat-form-field class="w-full">
             <mat-label>Status</mat-label>
             <mat-select name="status" formControlName="status">
-                <mat-option value="Active">Active</mat-option>
-                <mat-option value="Inactive">Inactive</mat-option>
+                <mat-option value="active">Active</mat-option>
+                <mat-option value="inactive">Inactive</mat-option>
             </mat-select>
         </mat-form-field>
 
