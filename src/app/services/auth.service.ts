@@ -16,12 +16,12 @@ export interface User {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth';
+  private apiUrl = 'http://localhost:5000/api/auth/';
 
   constructor(private http: HttpClient, private router: Router) {}
 
   login(credentials: { email: string; password: string }) {
-    return this.http.post(`${this.apiUrl}/login`, credentials, {withCredentials: true}).subscribe(
+    return this.http.post(`${this.apiUrl}login`, credentials, {withCredentials: true}).subscribe(
       (response: any) => {
         // console.log(response);
         localStorage.setItem('token', response.token);
@@ -41,7 +41,7 @@ export class AuthService {
     role: string;
     phoneNumber: string;
   }) {
-    return this.http.post(`${this.apiUrl}/register`, user);
+    return this.http.post(`${this.apiUrl}register`, user);
   }
 
   isLoggedIn(): boolean {
@@ -63,5 +63,21 @@ export class AuthService {
 
   hasRole(role: string[]): boolean {
     return role.includes(this.getRole());
+  }
+
+  getUsers() {
+    return this.http.get<User[]>(`${this.apiUrl}`, {withCredentials: true});
+  }
+
+  getUser(id: string) {
+    return this.http.get<User>(`${this.apiUrl}${id}`, {withCredentials: true});
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(`${this.apiUrl}${id}`, {withCredentials: true});
+  }
+
+  updateUser(id: string, user: Partial<User>) {
+    return this.http.put(`${this.apiUrl}${id}`, user, {withCredentials: true});
   }
 }
