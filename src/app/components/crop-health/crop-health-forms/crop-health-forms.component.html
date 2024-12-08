@@ -1,1 +1,39 @@
-<p>crop-health-forms works!</p>
+<div class="container max-w-lg mx-auto mt-36 p-6 bg-white shadow-lg rounded-lg">
+
+    <h1 class="text-3xl font-bold mb-6">{{editCropId?'Update Crop Health':'Add New Crop'}}</h1>
+
+    <form class="grid gap-4" [formGroup]="cropHealthForm">
+        <mat-form-field class="w-full">
+            <mat-label>Farm</mat-label>
+            <mat-select name="farm" formControlName="farm">
+                <mat-option *ngFor="let farm of farms" [value]="farm">{{farm.location}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Health Status</mat-label>
+            <input matInput name="healthStatus" type="text" formControlName="healthStatus" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Issue Detected</mat-label>
+            <input matInput name="issueDetected" type="text" formControlName="issueDetected" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Recommendation</mat-label>
+            <input matInput name="recommendation" type="text" formControlName="recommendation" />
+        </mat-form-field>
+
+
+
+        <div class="flex justify-center gap-4">
+            <button *ngIf="editCropId" mat-raised-button color="primary" type="button"
+                (click)="updateCropHealth()">Update</button>
+            <button *ngIf="!editCropId" mat-raised-button color="primary" type="button"
+                (click)="addCropHealth()">Add</button>
+
+            <button mat-raised-button color="warn" type="button" (click)="navigateToDashboard()">Cancel</button>
+        </div>
+    </form>
+</div>

@@ -14,6 +14,7 @@ export class CropHealthComponent {
   cropHealths: CropHealth[] = [];
   error: string | null = null;
   loading: boolean = true;
+  nofarms: boolean = false;
 
   constructor(
     private cropHealthService: CropHealthService,
@@ -29,10 +30,15 @@ export class CropHealthComponent {
     this.farmsService.getFarms().subscribe(
       (farms) => {
         this.farms = farms;
+        if(this.farms.length === 0) {
+          this.nofarms = true;
+          this.error = 'No farms found. Please add a farm first';
+          this.loading = false;
+        }
         for (const farm of this.farms) {
-          if (farm._id === '') {
-            continue;
-          }
+          // if (farm._id === '') {
+          //   continue;
+          // }
           this.cropHealthService.getCropHealthByFarm(farm._id!).subscribe(
             (cropHealths) => {
               this.cropHealths = this.cropHealths.concat(cropHealths);

@@ -6,6 +6,8 @@ import { UnauthorizedComponent } from './components/auth/unauthorized/unauthoriz
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { FarmFormsComponent } from './components/farms/farm-forms/farm-forms.component';
+import { CropHealthFormsComponent } from './components/crop-health/crop-health-forms/crop-health-forms.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,6 +20,8 @@ const routes: Routes = [
   },
   { path: 'farms/add', component: FarmFormsComponent  },
   { path: 'farms/:id', component: FarmFormsComponent  },
+  { path: 'cropHealth/add', component: CropHealthFormsComponent  },
+  { path: 'cropHealth/:id', component: CropHealthFormsComponent  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
