@@ -1,1 +1,56 @@
-<p>market works!</p>
+<div class="container mx-auto mt-10">
+    <!-- Header Section -->
+    <div class="flex justify-between p-4 bg-blue-50 rounded-lg shadow-md">
+        <span class="text-3xl font-bold text-blue-700">Market Listings</span>
+        <button mat-raised-button color="accent" routerLink="/market/add" [disabled]="nofarms">Add Listing</button>
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto mx-auto max-h-full shadow-lg rounded-lg mt-6 bg-white">
+        <table class="table-auto w-full border-collapse">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Farm</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Product</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Price</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Quantity</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Order Status</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Edit / Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="marketListings.length === 0 && !error && !loading">
+                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">No market listings found</td>
+                </tr>
+                <tr *ngIf="loading">
+                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">Loading...</td>
+                </tr>
+                <tr *ngIf="error && !loading">
+                    <td class="py-3 px-6 border-t border-gray-200 text-red-500" colspan="6">
+                        {{ error }}
+                    </td>
+                </tr>
+
+                <tr *ngFor="let listing of marketListings" class="border-b hover:bg-gray-100 transition-colors">
+                    <td class="py-3 px-6 border-t border-gray-200">{{ listing.farm }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ listing.product }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ listing.price | currency }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ listing.quantity }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ listing.orderStatus }}</td>
+                    <td class="flex gap-4 p-2 border-t border-gray-200">
+                        <button *ngIf="role === 'buyer'" mat-raised-button color="primary" (click)="buyListing(listing._id!)">Buy</button>
+                        <ng-container *ngIf="role !== 'buyer'">
+                            <ng-container *ngIf="listing.orderStatus !== 'bought'; else soldTemplate">
+                                <button mat-raised-button color="accent" [routerLink]="'/market/'+listing._id">Edit</button>
+                                <button mat-raised-button color="warn" (click)="deleteMarketListing(listing._id!)">Delete</button>
+                            </ng-container>
+                            <ng-template #soldTemplate>
+                                <span class="text-gray-500">Sold</span>
+                            </ng-template>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

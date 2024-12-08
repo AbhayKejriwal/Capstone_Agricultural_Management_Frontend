@@ -24,6 +24,10 @@ export class MarketService {
     return this.httpClient.get<Market[]>(`${this.apiUrl}farm/${farmId}`, { withCredentials: true });
   }
 
+  getMarketListing(id: string) {
+    return this.httpClient.get<Market>(`${this.apiUrl}${id}`, { withCredentials: true });
+  }
+
   getMarketListings() {
     return this.httpClient.get<Market>(`${this.apiUrl}`, { withCredentials: true });
   }
@@ -38,5 +42,9 @@ export class MarketService {
 
   deleteMarketListing(id: string) {
     return this.httpClient.delete<{}>(`${this.apiUrl}${id}`, { withCredentials: true });
+  }
+
+  buyMarketListing(id: string) {
+    return this.httpClient.put<{}>(`${this.apiUrl}buy/${id}`, {}, { withCredentials: true });
   }
 }

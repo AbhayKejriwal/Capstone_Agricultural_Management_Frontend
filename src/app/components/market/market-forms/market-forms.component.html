@@ -1,1 +1,43 @@
-<p>market-forms works!</p>
+<div class="container max-w-lg mx-auto mt-36 p-6 bg-white shadow-lg rounded-lg">
+
+    <h1 class="text-3xl font-bold mb-6">{{editId ? 'Update Market Listing' : 'Add New Market Listing'}}</h1>
+
+    <form class="grid gap-4" [formGroup]="marketForm">
+
+        <mat-form-field class="w-full">
+            <mat-label>Farm</mat-label>
+            <mat-select name="farm" formControlName="farm" [compareWith]="compareFarms">
+                <mat-option *ngFor="let farm of farms" [value]="farm">{{farm.location}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Product</mat-label>
+            <input matInput name="product" formControlName="product" />
+        </mat-form-field>
+        
+        <mat-form-field class="w-full">
+            <mat-label>Price</mat-label>
+            <input matInput name="price" type="number" formControlName="price" />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Quantity</mat-label>
+            <input matInput name="quantity" type="number" formControlName="quantity" />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Order Status</mat-label>
+            <input matInput name="orderStatus" formControlName="orderStatus" />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Buyer ID</mat-label>
+            <input matInput name="buyerId" formControlName="buyerId" />
+        </mat-form-field>
+        <div class="flex justify-center gap-4">
+            <button *ngIf="editId" mat-raised-button color="primary" type="button"
+                (click)="updateMarketListing()">Update</button>
+            <button *ngIf="!editId" mat-raised-button color="primary" type="button"
+                (click)="addMarketListing()">Add</button>
+            <button mat-raised-button color="warn" type="button" (click)="navigateToDashboard()">Cancel</button>
+        </div>
+    </form>
+</div>
