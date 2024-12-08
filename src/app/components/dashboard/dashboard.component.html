@@ -28,8 +28,11 @@
         <ng-container [ngSwitch]="selectedMenu">
             <app-farms *ngSwitchCase="'farms'"></app-farms>
             <app-crop-health *ngSwitchCase="'crop-health'"></app-crop-health>
-            <!-- <app-market *ngSwitchCase="'market'"></app-market> -->
-            <!-- <app-notifications *ngSwitchCase="'notifications'"></app-notifications> -->
+            <app-resources *ngSwitchCase="'resources'"></app-resources>
+            <app-inventory *ngSwitchCase="'inventory'"></app-inventory>
+            <app-finance *ngSwitchCase="'finance'"></app-finance>
+            <app-market *ngSwitchCase="'market'"></app-market>
+            <app-notifications *ngSwitchCase="'notifications'"></app-notifications>
         </ng-container>
     </main>
 </div>

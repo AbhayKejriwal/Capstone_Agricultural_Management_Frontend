@@ -7,6 +7,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { FarmFormsComponent } from './components/farms/farm-forms/farm-forms.component';
 import { CropHealthFormsComponent } from './components/crop-health/crop-health-forms/crop-health-forms.component';
+import { FinanceFormsComponent } from './components/finance/finance-forms/finance-forms.component';
+import { InventoryFormsComponent } from './components/inventory/inventory-forms/inventory-forms.component';
+import { ResourcesFormsComponent } from './components/resources/resources-forms/resources-forms.component';
+import { MarketFormsComponent } from './components/market/market-forms/market-forms.component';
 
 
 const routes: Routes = [
@@ -22,6 +26,14 @@ const routes: Routes = [
   { path: 'farms/:id', component: FarmFormsComponent  },
   { path: 'cropHealth/add', component: CropHealthFormsComponent  },
   { path: 'cropHealth/:id', component: CropHealthFormsComponent  },
+  { path: 'finance/add', component: FinanceFormsComponent },
+  { path: 'finance/:id', component: FinanceFormsComponent },
+  { path: 'inventory/add', component: InventoryFormsComponent },
+  { path: 'inventory/:id', component: InventoryFormsComponent },
+  { path: 'resource/add', component: ResourcesFormsComponent },
+  { path: 'resource/:id', component: ResourcesFormsComponent },
+  { path: 'market/add', component: MarketFormsComponent },
+  { path: 'market/:id', component: MarketFormsComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
