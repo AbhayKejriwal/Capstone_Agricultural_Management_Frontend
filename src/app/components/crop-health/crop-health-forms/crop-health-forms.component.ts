@@ -41,7 +41,7 @@ export class CropHealthFormsComponent {
         });
       });
     }
-    this.farmService.getFarms().subscribe((result) => {
+    this.farmService.getActiveFarms().subscribe((result) => {
       this.farms = result;
     });
     console.log('id:', this.editCropId);

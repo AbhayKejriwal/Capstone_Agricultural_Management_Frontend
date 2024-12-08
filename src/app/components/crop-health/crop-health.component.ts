@@ -27,7 +27,7 @@ export class CropHealthComponent {
     //this is because we need to display crop healths for all the farms
     //this is a nested request
 
-    this.farmsService.getFarms().subscribe(
+    this.farmsService.getActiveFarms().subscribe(
       (farms) => {
         this.farms = farms;
         if(this.farms.length === 0) {
