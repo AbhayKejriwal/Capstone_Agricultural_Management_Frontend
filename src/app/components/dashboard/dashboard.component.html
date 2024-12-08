@@ -16,7 +16,7 @@
             <li *ngFor="let item of menuItems" (click)="onSelectMenu(item.route)" [ngClass]="{
             'bg-blue-500 text-white': selectedMenu === item.route,
             'hover:bg-gray-300': selectedMenu !== item.route,
-            'display-none': !canDisplay(item)
+            'hidden': !canDisplay(item)
           }" class="cursor-pointer p-2 rounded mb-2">
                 {{ item.label }}
             </li>

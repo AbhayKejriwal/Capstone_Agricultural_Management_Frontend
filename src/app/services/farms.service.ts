@@ -23,6 +23,10 @@ export class FarmsService {
     return this.httpClient.get<Farm[]>(this.apiUrl, { withCredentials: true });
   }
 
+  getActiveFarms() {
+    return this.httpClient.get<Farm[]>(`${this.apiUrl}active`, { withCredentials: true });
+  }
+
   getFarm(id: string) {
     return this.httpClient.get<Farm>(`${this.apiUrl}${id}`, { withCredentials: true });
   }

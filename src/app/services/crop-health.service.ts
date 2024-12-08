@@ -3,10 +3,8 @@ import { Injectable } from '@angular/core';
 
 export interface CropHealth {
   _id?: string;
-  farmId: {
-    _id?: string;
-    location: string;
-  }
+  farmId: string;
+  farm: string;
   healthStatus: string;
   issueDetected?: string;
   recommendation?: string;
