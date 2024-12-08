@@ -22,8 +22,7 @@ export class DashboardComponent {
     { label: 'Resource Usage', route: 'resources', role: ['farmer'] },
     { label: 'Inventory', route: 'inventory', role: ['farmer'] },
     { label: 'Finance', route: 'finance', role: ['farmer'] },
-    { label: 'Market', route: 'market', role: ['farmer', 'buyer'] },
-    { label: 'Advisory & Training', route: 'advisory', role: ['farmer', 'consultant'] },
+    { label: 'Market', route: 'market', role: ['farmer', 'buyer', 'admin'] },
     { label: 'Notifications', route: 'notifications', role: ['All'] },
   ];
 
