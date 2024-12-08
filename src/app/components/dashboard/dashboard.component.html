@@ -27,6 +27,7 @@
     <!-- Main Content Area -->
     <main class="w-4/5 p-4">
         <ng-container [ngSwitch]="selectedMenu">
+            <app-users *ngSwitchCase="'users'"></app-users>
             <app-farms *ngSwitchCase="'farms'"></app-farms>
             <app-crop-health *ngSwitchCase="'crop-health'"></app-crop-health>
             <app-resources *ngSwitchCase="'resources'"></app-resources>
