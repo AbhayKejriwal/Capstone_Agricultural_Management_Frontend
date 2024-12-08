@@ -1,1 +1,43 @@
-<p>inventory-forms works!</p>
+<div class="container max-w-lg mx-auto mt-36 p-6 bg-white shadow-lg rounded-lg">
+
+    <h1 class="text-3xl font-bold mb-6">{{editId?'Update Item':'Add New Item'}}</h1>
+
+    <form class="grid gap-4" [formGroup]="inventoryForm">
+        <mat-form-field class="w-full">
+            <mat-label>Farm</mat-label>
+            <mat-select name="farm" formControlName="farm">
+                <mat-option *ngFor="let farm of farms" [value]="farm">{{farm.location}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Item Type</mat-label>
+            <mat-select name="itemType" formControlName="itemType">
+                <mat-option value="seeds">Seeds</mat-option>
+                <mat-option value="fertilizer">Fertilizer</mat-option>
+                <mat-option value="pesticide">Pesticide</mat-option>
+                <mat-option value="water">Water</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Quantity</mat-label>
+            <input matInput name="quantity"type="number" formControlName="quantity"/>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Last Updated</mat-label>
+            <input matInput name="lastUpdated" type="date" formControlName="lastUpdated"/>
+        </mat-form-field>
+        
+
+        <div class="flex justify-center gap-4">
+            <button *ngIf="editId" mat-raised-button color="primary" type="button"
+                (click)="updateInventory()">Update</button>
+            <button *ngIf="!editId" mat-raised-button color="primary" type="button"
+                (click)="addInventory()">Add</button>
+
+            <button mat-raised-button color="warn" type="button" (click)="navigateToDashboard()">Cancel</button>
+        </div>
+    </form>
+</div>
