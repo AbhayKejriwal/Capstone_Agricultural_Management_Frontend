@@ -19,6 +19,7 @@
             'hidden': !canDisplay(item)
           }" class="cursor-pointer p-2 rounded mb-2">
                 {{ item.label }}
+                <span *ngIf="item.route === 'notifications' && unreadNotifications" class="text-red-500 ml-2">●</span>
             </li>
         </ul>
     </nav>
