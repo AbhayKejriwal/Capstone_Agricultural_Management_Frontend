@@ -35,6 +35,8 @@ import { FinanceFormsComponent } from './components/finance/finance-forms/financ
 import { MarketComponent } from './components/market/market.component';
 import { MarketFormsComponent } from './components/market/market-forms/market-forms.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserFormsComponent } from './components/users/user-forms/user-forms.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { NotificationsComponent } from './components/notifications/notifications
     FinanceFormsComponent,
     MarketComponent,
     MarketFormsComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    UsersComponent,
+    UserFormsComponent
   ],
   imports: [
     BrowserModule,
