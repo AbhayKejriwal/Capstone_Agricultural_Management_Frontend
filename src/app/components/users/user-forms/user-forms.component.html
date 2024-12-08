@@ -1,1 +1,49 @@
-<p>user-forms works!</p>
+<div class="container max-w-lg mx-auto mt-36 p-6 bg-white shadow-lg rounded-lg">
+    <h1 class="text-3xl font-bold mb-6">{{editUserId ? 'Update User' : 'Add New User'}}</h1>
+
+    <form class="grid gap-4" [formGroup]="userForm">
+        <mat-form-field class="w-full">
+            <mat-label>Username</mat-label>
+            <input matInput name="username" type="text" formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" type="email" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput name="password" type="password" formControlName="password" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Role</mat-label>
+            <mat-select name="role" formControlName="role">
+                <mat-option [value]="'admin'">Admin</mat-option>
+                <mat-option [value]="'farmer'">Farmer</mat-option>
+                <mat-option [value]="'buyer'">Buyer</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Phone Number</mat-label>
+            <input matInput name="phoneNumber" type="text" formControlName="phoneNumber" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Status</mat-label>
+            <mat-select name="isActive" formControlName="isActive">
+                <mat-option [value]="true">Active</mat-option>
+                <mat-option [value]="false">Inactive</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="flex justify-center gap-4">
+            <button *ngIf="editUserId" mat-raised-button color="primary" type="button"
+                (click)="updateUser()">Update</button>
+            <button *ngIf="!editUserId" mat-raised-button color="primary" type="button" (click)="addUser()">Add</button>
+            <button mat-raised-button color="warn" type="button" routerLink="/dashboard">Cancel</button>
+        </div>
+    </form>
+</div>

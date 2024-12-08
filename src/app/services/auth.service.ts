@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 export interface User {
-  _id: string;
+  _id?: string;
   username: string;
   password?: string;
   email: string;
@@ -75,6 +75,10 @@ export class AuthService {
 
   deleteUser(id: string) {
     return this.http.delete(`${this.apiUrl}${id}`, {withCredentials: true});
+  }
+
+  createUser(user: User) {
+    return this.http.post(`${this.apiUrl}register`, user, {withCredentials: true});
   }
 
   updateUser(id: string, user: Partial<User>) {
