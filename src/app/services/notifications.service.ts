@@ -30,6 +30,10 @@ export class NotificationsService {
     return this.http.put<Notification>(`${this.apiUrl}${id}`, {}, { withCredentials: true });
   }
 
+  markAllAsRead() {
+    return this.http.put<Notification[]>(`${this.apiUrl}readAll`, {}, { withCredentials: true });
+  }
+
   deleteNotification(id: string) {
     return this.http.delete<Notification>(`${this.apiUrl}${id}`, { withCredentials: true });
   }
