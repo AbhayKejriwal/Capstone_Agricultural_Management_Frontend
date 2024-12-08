@@ -14,7 +14,7 @@ export interface Inventory {
   providedIn: 'root'
 })
 export class InventoryService {
-  private apiUrl = 'http://localhost:5000/api/inventory/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/inventory/';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -15,7 +15,7 @@ export interface Finance {
   providedIn: 'root',
 })
 export class FinanceService {
-  private apiUrl = 'http://localhost:5000/api/finance/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/finance/';
 
   constructor(private httpClient: HttpClient) {}
 

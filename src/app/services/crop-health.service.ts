@@ -14,7 +14,7 @@ export interface CropHealth {
   providedIn: 'root'
 })
 export class CropHealthService {
-  private apiUrl = 'http://localhost:5000/api/cropHealth/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/cropHealth/';
 
   constructor(private httpClient: HttpClient) { }
 

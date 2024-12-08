@@ -16,7 +16,7 @@ export interface Market {
   providedIn: 'root'
 })
 export class MarketService {
-  private apiUrl = 'http://localhost:5000/api/market/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/market/';
 
   constructor(private httpClient: HttpClient) { }
 

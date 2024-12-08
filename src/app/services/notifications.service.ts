@@ -14,7 +14,7 @@ export interface Notification {
   providedIn: 'root'
 })
 export class NotificationsService {
-  private apiUrl = 'http://localhost:5000/api/notifications/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/notifications/';
 
   constructor(private http: HttpClient) { }
 

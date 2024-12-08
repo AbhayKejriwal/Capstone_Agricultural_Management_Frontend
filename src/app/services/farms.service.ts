@@ -15,7 +15,7 @@ export interface Farm {
   providedIn: 'root'
 })
 export class FarmsService {
-  private apiUrl = 'http://localhost:5000/api/farms/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/farms/';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -16,7 +16,7 @@ export interface User {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/auth/';
 
   constructor(private http: HttpClient, private router: Router) {}
 

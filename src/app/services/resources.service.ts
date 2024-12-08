@@ -14,7 +14,7 @@ export interface Resource {
   providedIn: 'root'
 })
 export class ResourcesService {
-  private apiUrl = 'http://localhost:5000/api/resources/';
+  private apiUrl = 'https://capstone-agricultural-management-backend.onrender.com/api/resources/';
 
   constructor(private httpClient: HttpClient) { }
 
