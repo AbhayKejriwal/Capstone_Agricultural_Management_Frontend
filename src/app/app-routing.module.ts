@@ -12,6 +12,7 @@ import { InventoryFormsComponent } from './components/inventory/inventory-forms/
 import { ResourcesFormsComponent } from './components/resources/resources-forms/resources-forms.component';
 import { MarketFormsComponent } from './components/market/market-forms/market-forms.component';
 import { UsersComponent } from './components/users/users.component';
+import { UserFormsComponent } from './components/users/user-forms/user-forms.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -26,13 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'users/add',
-    component: UsersComponent,
+    component: UserFormsComponent,
     canActivate: [authGuard],
     data: { roles: ['admin'] },
   },
   {
     path: 'users/:id',
-    component: UsersComponent,
+    component: UserFormsComponent,
     canActivate: [authGuard],
     data: { roles: ['admin'] },
   },
