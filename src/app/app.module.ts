@@ -9,8 +9,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// import { MatSidenavModule } from '@angular/material/sidenav';
-// import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 // import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatGridListModule } from '@angular/material/grid-list';
@@ -76,8 +76,8 @@ import { UserFormsComponent } from './components/users/user-forms/user-forms.com
     MatToolbarModule,
     // MatGridListModule,
     // MatCardModule,
-    // MatSidenavModule,
-    // MatIconModule,
+    MatSidenavModule,
+    MatIconModule,
     // MatListModule
   ],
   providers: [

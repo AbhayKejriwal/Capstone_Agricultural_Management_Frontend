@@ -12,6 +12,7 @@ export class DashboardComponent {
   username: string = ''; // Store username
   selectedMenu: string = ''; // Track selected sidebar menu
   unreadNotifications: boolean = false;
+  isSidebarOpen: boolean = true; // Track sidebar state
 
   // Define menu items based on roles
   menuItems: { label: string; route: string; role: string[] }[] = [
@@ -61,6 +62,10 @@ export class DashboardComponent {
   // Handle menu selection
   onSelectMenu(route: string) {
     this.selectedMenu = route;
+  }
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 
   logout() {
