@@ -2,6 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+export interface User {
+  _id: string;
+  username: string;
+  password?: string;
+  email: string;
+  role: string;
+  phoneNumber?: string;
+  isActive: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
