@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-market',
-  templateUrl: './market.component.html',
-  styleUrl: './market.component.css'
+  templateUrl: './market.component.html'
 })
 export class MarketComponent {
 
