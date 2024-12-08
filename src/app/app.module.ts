@@ -25,6 +25,15 @@ import { FarmsComponent } from './components/farms/farms.component';
 import { CropHealthComponent } from './components/crop-health/crop-health.component';
 import { FarmFormsComponent } from './components/farms/farm-forms/farm-forms.component';
 import { CropHealthFormsComponent } from './components/crop-health/crop-health-forms/crop-health-forms.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { InventoryFormsComponent } from './components/inventory/inventory-forms/inventory-forms.component';
+import { ResourcesComponent } from './components/resources/resources.component';
+import { ResourcesFormsComponent } from './components/resources/resources-forms/resources-forms.component';
+import { FinanceComponent } from './components/finance/finance.component';
+import { FinanceFormsComponent } from './components/finance/finance-forms/finance-forms.component';
+import { MarketComponent } from './components/market/market.component';
+import { MarketFormsComponent } from './components/market/market-forms/market-forms.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +45,16 @@ import { CropHealthFormsComponent } from './components/crop-health/crop-health-f
     FarmsComponent,
     CropHealthComponent,
     FarmFormsComponent,
-    CropHealthFormsComponent
+    CropHealthFormsComponent,
+    InventoryComponent,
+    InventoryFormsComponent,
+    ResourcesComponent,
+    ResourcesFormsComponent,
+    FinanceComponent,
+    FinanceFormsComponent,
+    MarketComponent,
+    MarketFormsComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
