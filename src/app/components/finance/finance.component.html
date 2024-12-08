@@ -1,1 +1,66 @@
-<p>finance works!</p>
+<div class="container mx-auto mt-10">
+    <!-- Header Section -->
+    <div class="flex justify-between p-4 bg-blue-50 rounded-lg shadow-md">
+        <span class="text-3xl font-bold text-blue-700">Finances</span>
+        <button mat-raised-button color="accent" routerLink="/finance/add" [disabled]="nofarms">Add Transaction</button>
+    </div>
+
+    <div class="container mx-auto px-4 py-6">
+        <div class="grid grid-cols-3 gap-4">
+            <div class="p-4 border rounded-lg shadow-lg text-center">
+                <h2 class="text-lg font-semibold">Total Income</h2>
+                <p class="text-2xl font-bold text-blue-500">{{ totalIncome }}</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow-lg text-center">
+                <h2 class="text-lg font-semibold">Total Expense</h2>
+                <p class="text-2xl font-bold text-green-500">{{ totalExpense }}</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow-lg text-center">
+                <h2 class="text-lg font-semibold">Total Credit</h2>
+                <p class="text-2xl font-bold text-red-500">{{ totalCredit }}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto mx-auto max-h-full shadow-lg rounded-lg mt-6 bg-white">
+        <table class="table-auto w-full border-collapse">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Farm Location</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Transaction Type</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Amount</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Date</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Details</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Edit / Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="finances.length === 0 && !error && !loading">
+                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">No finances found</td>
+                </tr>
+                <tr *ngIf="loading">
+                    <td class="py-3 px-6 border-t border-gray-200" colspan="6">Loading...</td>
+                </tr>
+                <tr *ngIf="error && !loading">
+                    <td class="py-3 px-6 border-t border-gray-200 text-red-500" colspan="6">
+                        {{ error }}
+                    </td>
+                </tr>
+
+                <tr *ngFor="let finance of finances" class="border-b hover:bg-gray-100 transition-colors">
+                    <td class="py-3 px-6 border-t border-gray-200">{{ finance.farm }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ finance.transactionType }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ finance.amount }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ finance.date | date:'yyyy-MM-dd' }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ finance.details }}</td>
+                    <td class="flex gap-4 p-2 border-t border-gray-200">
+                        <button mat-raised-button color="accent" [routerLink]="'/finance/'+finance._id">Edit</button>
+                        <button mat-raised-button color="warn" (click)="deleteFinance(finance._id!)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

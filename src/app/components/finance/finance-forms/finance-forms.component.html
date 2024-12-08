@@ -1,1 +1,49 @@
-<p>finance-forms works!</p>
+<div class="container max-w-lg mx-auto mt-36 p-6 bg-white shadow-lg rounded-lg">
+
+    <h1 class="text-3xl font-bold mb-6">{{editFinanceId?'Update Transaction':'Add New Transaction'}}</h1>
+
+    <form class="grid gap-4" [formGroup]="financeForm">
+        <mat-form-field class="w-full">
+            <mat-label>Farm</mat-label>
+            <mat-select name="farm" formControlName="farm">
+                <mat-option *ngFor="let farm of farms" [value]="farm">{{farm.location}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Transaction Type</mat-label>
+            <mat-select name="transactionType" formControlName="transactionType">
+                <mat-option value="income">Income</mat-option>
+                <mat-option value="expense">Expense</mat-option>
+                <mat-option value="credit">Credit</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Amount</mat-label>
+            <input matInput name="amount" type="number" formControlName="amount" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Date</mat-label>
+            <input matInput name="date" type="date" formControlName="date" />
+        </mat-form-field>
+        
+        <mat-form-field class="w-full">
+            <mat-label>Details</mat-label>
+            <input matInput name="details" type="text" formControlName="details" />
+        </mat-form-field>
+
+
+
+        <div class="flex justify-center gap-4">
+            <button *ngIf="editFinanceId" mat-raised-button color="primary" type="button"
+                (click)="updateFinance()">Update</button>
+            <button *ngIf="!editFinanceId" mat-raised-button color="primary" type="button"
+                (click)="addFinance()">Add</button>
+
+            <button mat-raised-button color="warn" type="button" (click)="navigateToDashboard()">Cancel</button>
+        </div>
+    </form>
+</div>
