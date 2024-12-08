@@ -73,6 +73,10 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}${id}`, {withCredentials: true});
   }
 
+  getCurrentUser() {
+    return this.http.get<User>(`${this.apiUrl}profile`, {withCredentials: true});
+  }
+
   deleteUser(id: string) {
     return this.http.delete(`${this.apiUrl}${id}`, {withCredentials: true});
   }
@@ -83,5 +87,14 @@ export class AuthService {
 
   updateUser(id: string, user: Partial<User>) {
     return this.http.put(`${this.apiUrl}${id}`, user, {withCredentials: true});
+  }
+
+  getUsername(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.getCurrentUser().subscribe(
+        (user: User) => resolve(user.username),
+        (error) => reject(error)
+      );
+    });
   }
 }

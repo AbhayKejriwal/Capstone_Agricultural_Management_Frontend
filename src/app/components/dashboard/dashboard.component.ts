@@ -9,6 +9,7 @@ import { NotificationsService } from '../../services/notifications.service';
 })
 export class DashboardComponent {
   role: string = ''; // Store user role
+  username: string = ''; // Store username
   selectedMenu: string = ''; // Track selected sidebar menu
   unreadNotifications: boolean = false;
 
@@ -31,6 +32,7 @@ export class DashboardComponent {
     private notificationsService: NotificationsService
   ) {
     this.role = this.authService.getRole(); // Fetch role from AuthService
+    this.authService.getUsername().then(username => this.username = username); // Fetch username from AuthService
     // Fetch selected menu from route state
     // If not available, set the first menu which is accessible by the user
     this.selectedMenu = this.router.getCurrentNavigation()?.extras.state?.['path'] || this.menuItems.find(item => this.canDisplay(item))?.route;    

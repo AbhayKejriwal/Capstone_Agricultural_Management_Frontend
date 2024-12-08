@@ -3,9 +3,10 @@
         <div class="flex items-center">
             <span class="text-3xl font-bold">Digital Farming and Agricultural Management System</span>
         </div>
-        <button mat-raised-button (click)="logout()" color="warn">
-            Logout
-        </button>
+        <div class="flex items-center gap-4">
+            <span>Welcome, {{ username }} ({{ role }})</span>
+            <button mat-raised-button (click)="logout()" color="warn">Logout</button>
+        </div>
     </mat-toolbar>
 </header>
 
