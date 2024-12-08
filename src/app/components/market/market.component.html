@@ -35,7 +35,7 @@
                     <td class="py-3 px-6 border-t border-gray-200">{{ listing.farm }}</td>
                     <td class="py-3 px-6 border-t border-gray-200">{{ listing.product }}</td>
                     <td class="py-3 px-6 border-t border-gray-200">{{ listing.price | currency }}</td>
-                    <td class="py-3 px-6 border-t border-gray-200">{{ listing.quantity }}</td>
+                    <td class="py-3 px-6 border-t border-gray-200">{{ listing.quantity }} Kg</td>
                     <td class="py-3 px-6 border-t border-gray-200">{{ listing.orderStatus }}</td>
                     <td class="flex gap-4 p-2 border-t border-gray-200">
                         <button *ngIf="role === 'buyer'" mat-raised-button color="primary" (click)="buyListing(listing._id!)">Buy</button>

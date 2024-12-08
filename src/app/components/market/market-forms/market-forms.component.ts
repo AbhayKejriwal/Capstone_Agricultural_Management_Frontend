@@ -24,9 +24,7 @@ export class MarketFormsComponent implements OnInit {
       farm: ['', Validators.required],
       product: ['', Validators.required],
       price: ['', Validators.required],
-      quantity: ['', Validators.required],
-      orderStatus: [''],
-      buyerId: ['']
+      quantity: ['', Validators.required]
     });
   }
 
@@ -40,9 +38,7 @@ export class MarketFormsComponent implements OnInit {
             farm: farm,
             product: result.product,
             price: result.price,
-            quantity: result.quantity,
-            orderStatus: result.orderStatus,
-            buyerId: result.buyerId
+            quantity: result.quantity
           });
           // console.log('Form patched:', this.marketForm.value);
         });
@@ -63,9 +59,7 @@ export class MarketFormsComponent implements OnInit {
       farm: this.marketForm.value.farm.location as string,
       product: this.marketForm.value.product as string,
       price: this.marketForm.value.price as number,
-      quantity: this.marketForm.value.quantity as number,
-      orderStatus: this.marketForm.value.orderStatus as string,
-      buyerId: this.marketForm.value.buyerId as string
+      quantity: this.marketForm.value.quantity as number
     };
   }
 
