@@ -32,17 +32,23 @@ export class ResourcesFormsComponent {
     this.editId = this.route.snapshot.params['id'];
     if (this.editId) {
       this.resourcesService.getResource(this.editId).subscribe((result) => {
-        this.resourceForm.patchValue({
-          farm: result.farm,
-          itemType: result.itemType,
-          quantity: result.quantity,
-          usageDate: result.usageDate
+        this.farmService.getFarm(result.farmId).subscribe((farm) => {
+          // console.log('Farm retrieved:', farm);
+          const formattedDate = result.usageDate ? new Date(result.usageDate).toISOString().split('T')[0] : '';
+          this.resourceForm.patchValue({
+            farm: farm,
+            itemType: result.itemType,
+            quantity: result.quantity,
+            usageDate: formattedDate
+          });
+          // console.log('Form patched:', this.resourceForm.value);
         });
       });
     }
     this.farmService.getActiveFarms().subscribe((result) => {
       this.farms = result;
     });
+    // console.log('id:', this.editId);
   }
 
   mapFormToResource() {
@@ -61,7 +67,7 @@ export class ResourcesFormsComponent {
 
       this.resourcesService.createResource(resource).subscribe(
         () => {
-          console.log('Resource created successfully');
+          // console.log('Resource created successfully');
           this.navigateToDashboard();
         },
         (error) => {
@@ -80,7 +86,7 @@ export class ResourcesFormsComponent {
 
       this.resourcesService.updateResource(this.editId, resource).subscribe(
         () => {
-          console.log('Resource updated successfully');
+          // console.log('Resource updated successfully');
           this.navigateToDashboard();
         },
         (error) => {
@@ -97,5 +103,10 @@ export class ResourcesFormsComponent {
     this.router.navigate(['/dashboard'], {
       state: { path: 'resources' }
     });
+  }
+
+  // Add this method to handle farm comparison in the select
+  compareFarms(farm1: Farm, farm2: Farm): boolean {
+    return farm1 && farm2 ? farm1._id === farm2._id : farm1 === farm2;
   }
 }

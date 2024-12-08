@@ -30,21 +30,28 @@ export class CropHealthFormsComponent {
 
   ngOnInit() {
     this.editCropId = this.route.snapshot.params['id'];
+    // console.log('id:', this.editCropId);
     if (this.editCropId) {
       this.cropHealthService.getCropHealth(this.editCropId).subscribe((result) => {
-        //patchvalue will populate the value in the form
-        this.cropHealthForm.patchValue({
-          farm: result.farm, 
-          healthStatus: result.healthStatus,
-          issueDetected: result.issueDetected,
-          recommendation: result.recommendation
+        this.farmService.getFarm(result.farmId).subscribe((farm) => {
+          // console.log('Farm retrieved:', farm);
+          this.cropHealthForm.patchValue({
+            farm: farm,
+            healthStatus: result.healthStatus,
+            issueDetected: result.issueDetected,
+            recommendation: result.recommendation
+          });
+          // console.log('Form patched:', this.cropHealthForm.value);
         });
       });
     }
     this.farmService.getActiveFarms().subscribe((result) => {
       this.farms = result;
     });
-    console.log('id:', this.editCropId);
+  }
+
+  compareFarms(farm1: Farm, farm2: Farm): boolean {
+    return farm1 && farm2 ? farm1._id === farm2._id : farm1 === farm2;
   }
 
   mapFormToCropHealth() {
@@ -60,12 +67,11 @@ export class CropHealthFormsComponent {
 
   addCropHealth() {
     if (this.cropHealthForm.valid) {
-      // map form value to cropHealth interface
       const cropHealth: CropHealth = this.mapFormToCropHealth();
 
       this.cropHealthService.createCropHealth(cropHealth).subscribe(
         () => {
-          console.log('cropHealth created successfully');
+          // console.log('cropHealth created successfully');
           this.navigateToDashboard();
         },
         (error) => {
@@ -81,12 +87,11 @@ export class CropHealthFormsComponent {
 
   updateCropHealth() {
     if (this.cropHealthForm.valid) {
-      // map form value to cropHealth interface
       const cropHealth: CropHealth = this.mapFormToCropHealth();
 
       this.cropHealthService.updateCropHealth(this.editCropId, cropHealth).subscribe(
         () => {
-          console.log('cropHealth updated successfully');
+          // console.log('cropHealth updated successfully');
           this.navigateToDashboard();
         },
         (error) => {

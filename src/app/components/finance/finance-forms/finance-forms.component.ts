@@ -33,17 +33,24 @@ export class FinanceFormsComponent {
     this.editFinanceId = this.route.snapshot.params['id'];
     if (this.editFinanceId) {
       this.financeService.getFinance(this.editFinanceId).subscribe((result) => {
-        //patchvalue will populate the value in the form
-        this.financeForm.patchValue({
-          farm: result.farm, 
-          
+        this.farmService.getFarm(result.farmId).subscribe((farm) => {
+          // console.log('Farm retrieved:', farm);
+          const formattedDate = result.date ? new Date(result.date).toISOString().split('T')[0] : '';
+          this.financeForm.patchValue({
+            farm: farm,
+            transactionType: result.transactionType,
+            amount: result.amount,
+            date: formattedDate,
+            details: result.details
+          });
+          // console.log('Form patched:', this.financeForm.value);
         });
       });
     }
     this.farmService.getActiveFarms().subscribe((result) => {
       this.farms = result;
     });
-    console.log('id:', this.editFinanceId);
+    // console.log('id:', this.editFinanceId);
   }
 
   mapFormToFinance() {
@@ -59,12 +66,11 @@ export class FinanceFormsComponent {
 
   addFinance() {
     if (this.financeForm.valid) {
-      // map form value to Finance interface
       const finance: Finance = this.mapFormToFinance();
 
       this.financeService.createFinance(finance).subscribe(
         () => {
-          console.log('Finance created successfully');
+          // console.log('Finance created successfully');
           this.navigateToDashboard();
         },
         (error) => {
@@ -80,12 +86,11 @@ export class FinanceFormsComponent {
 
   updateFinance() {
     if (this.financeForm.valid) {
-      // map form value to Finance interface
       const finance: Finance = this.mapFormToFinance();
 
       this.financeService.updateFinance(this.editFinanceId, finance).subscribe(
         () => {
-          console.log('Finance updated successfully');
+          // console.log('Finance updated successfully');
           this.navigateToDashboard();
         },
         (error) => {
@@ -102,5 +107,9 @@ export class FinanceFormsComponent {
     this.router.navigate(['/dashboard'], {
       state: { path: 'finance' }
     }); 
+  }
+
+  compareFarms(farm1: Farm, farm2: Farm): boolean {
+    return farm1 && farm2 ? farm1._id === farm2._id : farm1 === farm2;
   }
 }

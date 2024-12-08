@@ -5,7 +5,7 @@
     <form class="grid gap-4" [formGroup]="resourceForm">
         <mat-form-field class="w-full">
             <mat-label>Farm</mat-label>
-            <mat-select name="farm" formControlName="farm">
+            <mat-select name="farm" formControlName="farm" [compareWith]="compareFarms">
                 <mat-option *ngFor="let farm of farms" [value]="farm">{{farm.location}}</mat-option>
             </mat-select>
         </mat-form-field>

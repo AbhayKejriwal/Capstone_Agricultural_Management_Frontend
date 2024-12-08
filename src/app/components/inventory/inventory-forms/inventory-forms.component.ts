@@ -32,17 +32,23 @@ export class InventoryFormsComponent {
     this.editId = this.route.snapshot.params['id'];
     if (this.editId) {
       this.inventoryService.getInventory(this.editId).subscribe((result) => {
-        //patchvalue will populate the value in the form
-        this.inventoryForm.patchValue({
-          farm: result.farm, 
-          
+        this.farmService.getFarm(result.farmId).subscribe((farm) => {
+          // console.log('Farm retrieved:', farm);
+          const formattedDate = result.lastUpdated ? new Date(result.lastUpdated).toISOString().split('T')[0] : '';
+          this.inventoryForm.patchValue({
+            farm: farm,
+            itemType: result.itemType,
+            quantity: result.quantity,
+            lastUpdated: formattedDate
+          });
+          // console.log('Form patched:', this.inventoryForm.value);
         });
       });
     }
     this.farmService.getActiveFarms().subscribe((result) => {
       this.farms = result;
     });
-    console.log('id:', this.editId);
+    // console.log('id:', this.editId);
   }
 
   mapFormToInventory() {
@@ -57,12 +63,10 @@ export class InventoryFormsComponent {
 
   addInventory() {
     if (this.inventoryForm.valid) {
-      // map form value to Inventory interface
       const inventory: Inventory = this.mapFormToInventory();
-
       this.inventoryService.createInventory(inventory).subscribe(
         () => {
-          console.log('Inventory created successfully');
+          // console.log('Inventory created successfully');
           this.navigateToDashboard();
         },
         (error) => {
@@ -78,12 +82,10 @@ export class InventoryFormsComponent {
 
   updateInventory() {
     if (this.inventoryForm.valid) {
-      // map form value to Inventory interface
       const inventory: Inventory = this.mapFormToInventory();
-
       this.inventoryService.updateInventory(this.editId, inventory).subscribe(
         () => {
-          console.log('Inventory updated successfully');
+          // console.log('Inventory updated successfully');
           this.navigateToDashboard();
         },
         (error) => {
@@ -100,5 +102,9 @@ export class InventoryFormsComponent {
     this.router.navigate(['/dashboard'], {
       state: { path: 'inventory' }
     }); 
+  }
+
+  compareFarms(farm1: Farm, farm2: Farm): boolean {
+    return farm1 && farm2 ? farm1._id === farm2._id : farm1 === farm2;
   }
 }
